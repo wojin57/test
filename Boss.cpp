@@ -1,7 +1,5 @@
 #include "Boss.h"
 
-
-
 Boss::Boss()
 {
 	setmname("???");
