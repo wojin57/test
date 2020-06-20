@@ -14,13 +14,15 @@ Character::Character()
 	{
 		cout << "Level Up!" << endl;
 		setexp(0);
-		setmaxexp(getlv() * 5);
+		setmaxexp(getlv() * 5); // 5같은 변수는 constexpr 사용해서 상수화.
 
-		if (job == "모험가")
+		if (job == "모험가") // string도 마찬가지. TRAVELER = "모험가" 정도로 해두고 변수로
+			//사용하는게 나중에 찾기도 편하고 이름을 바꿀때도 한꺼번에 바뀌어서 용이함.
+			//저번에도 말했듯이 #define과 쓰는 맥락이 일치.
 		{
-			maxhp += 50;
+			maxhp += 50; // 마찬가지. 롤의 성장체력같은 개념인데 GROWTH_HP 정도로 해두면 좋음.
 			maxmp += 25;
-			hp += (maxhp - hp);
+			hp += (maxhp - hp); // 이건 걍 성장체력만큼 피 회복시키면 되는거같은데?
 			mp += (maxmp - mp);
 			atk += 10;
 			def += 5;
@@ -45,6 +47,9 @@ Character::Character()
 			atk += 25;
 			def += 10;
 		}
+		//직업별로 값이 달라질거면 차라리 직업 클래스를 만들어서 성장 능력치값만 저장해두거나
+		//namespace를 이용해서 각 직업의 성장 능력치를 상수화시키는게 좋음.
+		//어떻게 하는건지 모르겠으면 각각 예시 들어서 만들어줄게.
 	}
 }
 
